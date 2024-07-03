@@ -1,0 +1,127 @@
+html {
+	height: 100%;
+}
+
+body {
+	background: #100736 radial-gradient(#2c3db1, #170c53 15em, #100736 70%) no-repeat center center / 60em 60em;
+	color: #b3f3db;
+	height: 100%;
+	min-height: 40em;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.timer {
+	background: radial-gradient(rgba(#412eb3, 0.5), rgba(#371e86, 0));
+	border: 12px solid #2aa7df;
+	border-radius: 50%;
+	box-shadow: 0 0 20px rgba(#2aa7df, 0.74), inset 0 0 20px rgba(#2aa7df, 0.74);
+	transition: 1s;
+
+	position: relative;
+	width: 85vw;
+	height: 85vw;
+	max-width: 25em;
+	max-height: 25em;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&::before {
+		border-radius: 50%;
+		box-shadow: 0 0 3px 3px rgba(#9cead0, 0.62), inset 0 0 3px 3px rgba(#9cead0, 0.62);
+
+		content: "";
+		pointer-events: none;
+		position: absolute;
+		top: -6px;
+		right: -6px;
+		bottom: -6px;
+		left: -6px;
+	}
+}
+
+.time {
+	font-size: 4.5em;
+}
+
+input {
+	background: transparent;
+	border: 0;
+	border-bottom: 4px solid transparent;
+	color: inherit;
+	font-size: inherit;
+	transition: 1s;
+
+	padding: 0;
+	width: 1.25em;
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	&:focus {
+		border-bottom: 4px solid #9cead0;
+		outline: none;
+	}
+}
+
+.pulse {
+	&::before,
+	&::after {
+		border: 30px solid #2aa7df;
+		border-radius: 50%;
+		content: "";
+		position: absolute;
+		top: -6em;
+		right: -6em;
+		bottom: -6em;
+		left: -6em;
+		transform: scale(0.01);
+		opacity: 0;
+	}
+
+	&.active::before,
+	&.active::after {
+		animation: pulse 2s infinite ease-out -2.25s;
+	}
+
+	&.active::after {
+		animation-delay: -1.25s;
+	}
+}
+
+@keyframes pulse {
+	50% {
+		opacity: 0.25;
+	}
+	100% {
+		transform: scale(1);
+		opacity: 0;
+	}
+}
+
+.start {
+	background: none;
+	border: 2px solid #9cead0;
+	border-radius: 3px;
+	display: block;
+	font-size: 1.75em;
+	opacity: 0.5;
+	transition: 1s;
+
+	margin: 3em auto -2em;
+	padding: 0.65em 1.5em;
+
+	&:hover,
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 12px rgba(#2aa7df, 0.5), inset 0 0 12px rgba(#2aa7df, 0.5);
+		opacity: 1;
+	}
+}
